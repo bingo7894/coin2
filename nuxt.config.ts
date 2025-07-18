@@ -1,4 +1,3 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: "2024-04-03",
   devtools: { enabled: true },
@@ -12,5 +11,18 @@ export default defineNuxtConfig({
   runtimeConfig: {
     githubId: "",
     githubSecret: "",
+  },
+
+  // เพิ่มส่วนนี้เข้าไป
+  vite: {
+    optimizeDeps: {
+      exclude: ["@prisma/client"],
+    },
+  },
+
+  nitro: {
+    externals: {
+      inline: ["@prisma/client"],
+    },
   },
 });

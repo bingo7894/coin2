@@ -194,18 +194,21 @@
 </template>
 
 <script setup lang="ts">
-import { Prisma } from "@prisma/client";
-
 definePageMeta({
   middleware: "protected",
 });
 
 // Define the type for a ProcessingHistory record that includes its details
-type HistoryWithDetails = Prisma.ProcessingHistoryGetPayload<{
-  include: {
-    details: true;
-  };
-}>;
+type HistoryWithDetails = {
+  id: string;
+  userId: string;
+  totalCount: number;
+  createdAt: string;
+  details: {
+    type: string;
+    count: number;
+  }[];
+};
 
 const route = useRoute();
 const ids = (route.query.ids as string)?.split(",") || [];
